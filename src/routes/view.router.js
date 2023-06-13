@@ -143,9 +143,4 @@ router.get("/logout", async (request, response) => {
   response.clearCookie("tokenBE").redirect("/login");
 });
 
-router.get("/current", passportCall("jwt"), async (request, response) => {
-  const { user } = request.user;
-  response.send({ user });
-});
-
 export default router;

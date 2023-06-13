@@ -2,6 +2,7 @@ import { Router } from "express";
 import UserManager from "../dao/MongoDbManagers/UserManager.js";
 import { generateToken, isValidPassword, createHash } from "../utils.js";
 import CartManager from "../dao/MongoDbManagers/CartManager.js";
+import { passportCall } from "../middleware/session.js";
 
 const router = new Router();
 const userManager = new UserManager();
@@ -69,6 +70,11 @@ router.post("/resetpassword", async (request, response) => {
     : response.send({
         success: `Password modified succesfully. Please go to login.`,
       });
+});
+
+router.get("/current", passportCall("jwt"), async (request, response) => {
+  const { user } = request.user;
+  response.send({ user });
 });
 
 // ! LOGIN CON PASSPORT-GITHUB STRATEGY
