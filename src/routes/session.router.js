@@ -15,6 +15,7 @@ router.post("/login", async (request, response) => {
       .status(400)
       .send({ status: "error", error: `You must complete all fields.` });
   const user = await userManager.getUser(email);
+  console.log(user);
   if (user?.error)
     return response.status(401).send({ error: `User not found` });
   if (!isValidPassword(user, password))
