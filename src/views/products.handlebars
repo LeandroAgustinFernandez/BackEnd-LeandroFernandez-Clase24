@@ -10,7 +10,7 @@
         <h2>Bienvenido: {{user.first_name}} {{user.last_name}}</h2>
         <h3>{{user.email}}</h3>
         <p>Rol: {{user.role}}</p>
-        <p class="cart-id" hidden>{{cart}}</p>
+        <p class="cart-id" hidden>{{cart._id}}</p>
       </div>
       <form action="/products" method="get" class="form_search">
         <select name="query" id="query" class="form_select">
